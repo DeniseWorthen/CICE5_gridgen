@@ -13,10 +13,10 @@ begin
   ; rad 2 degree
   rad2deg = 180.0d0/acos(-1.0d0)
  
-  ;grres = "mx1"
-  ;minlat = 86
-  grres = "mx025"
-  minlat = 88
+  grres = "mx050"
+  minlat = 87
+  ;grres = "mx025"
+  ;minlat = 88
 
   ;angle2plot = "angle"
   ; only after debug mode
@@ -26,7 +26,7 @@ begin
 ; read in netCDF file
 ;************************************************
 
-     rtsrc = "$WORK/EMC_CICE/tools/"
+     rtsrc = "$WORK/CICE5_gridgen/"
   ; get ang from cice grid file 
    varsrc  = "grid_cice_NEMS_"+grres+".nc"
 
@@ -49,13 +49,8 @@ begin
 ; great circle path from (lon1,lat1) to (lon2,lat2)
 ;************************************************
 
-  if(grres .eq. "mx1")then
    lon1=  80.00
    lon2=-100.00
-  else
-   lon1=  60.00
-   lon2=-120.00
-  end if
    lat1 = 60.00
    lat2 = 60.00
 

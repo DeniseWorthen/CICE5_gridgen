@@ -13,17 +13,19 @@ begin
   ; rad 2 degree
   rad2deg = 180.0d0/acos(-1.0d0)
 
-  ;grres = "mx1"
-  grres = "mx025"
+  grres = "mx050"
+  minlat = 86.0
+  ;grres = "mx025"
+  ;minlat = 88.0
 
-  varname = "htn"
-  ;varname = "hte"
+  ;varname = "htn"
+  varname = "hte"
 
 ;************************************************
 ; read in netCDF file
 ;************************************************
 
-     rtsrc = "$WORK/EMC_CICE/tools/"
+     rtsrc = "$WORK/CICE5_gridgen/"
   ; get ang from cice grid file 
    varsrc  = "grid_cice_NEMS_"+grres+".nc"
 
@@ -35,12 +37,19 @@ begin
       htnname = "htn"
    htnlonname = "lonCv"
    htnlatname = "latCv"
-      htnlevs = (/6.4, 6.6, 0.005/) 
 
      htename  = "hte"
    htelonname = "lonCu"
    htelatname = "latCu"
+
+   if(grres .eq. "mx025")then
+      htnlevs = (/6.4, 6.6, 0.005/) 
       htelevs = (/2.0, 26.0, 1.00/) 
+   end if
+   if(grres .eq. "mx050")then
+      htnlevs = (/12.0, 13.0, 0.02/) 
+      htelevs = (/2.0, 46.0, 1.00/) 
+   end if
 
      filesrc = addfile(rtsrc+varsrc,"r")
    plottitle = rtsrc+varsrc
@@ -50,13 +59,8 @@ begin
 ; great circle path from (lon1,lat1) to (lon2,lat2)
 ;************************************************
 
-  if(grres .eq. "mx1")then
    lon1=  80.00
    lon2=-100.00
-  else
-   lon1=  60.00
-   lon2=-120.00
-  end if
    lat1 = 30.00
    lat2 = 30.00
 
@@ -65,7 +69,7 @@ begin
 ;************************************************
   wkstype="X11"
   ;wkstype="png"
-  wkstype@wkWidth=800
+  wkstype@wkWidth=802
   wkstype@wkHeight=800
   wks   = gsn_open_wks (wkstype,varname+"_"+grres)              ; send graphics to X11 window
 
@@ -82,7 +86,7 @@ begin
 
   if(varname .eq. "htn")then
    res@gsnPolar   = "NH"                          ; specify the hemisphere
-   res@mpMinLatF  =  88                           ; minimum lat to plot
+   res@mpMinLatF  =  minlat                       ; minimum lat to plot
    res@mpCenterLonF = -45
    levs = htnlevs
   end if

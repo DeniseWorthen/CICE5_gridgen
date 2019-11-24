@@ -4,11 +4,15 @@ CDF=/apps/netcdf/4.7.0/intel/18.0.5.274
 #####################################################################
 FOPT = -C 
 
- F90 = ifort
+F90 = ifort
 #F90 = ifort -warn
 
-optall = -Doutput_grid_qdeg
-#optall = -Doutput_grid_qdeg -Ddebug_output
+#opt1 = -Doutput_grid_qdeg
+opt1 = -Doutput_grid_hdeg
+
+opt2 = -Ddebug_output
+
+optall = $(opt1) $(opt2)
 
 #####################################################################
 # 
