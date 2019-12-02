@@ -12,6 +12,9 @@ module grdvars
   !super-grid replicate row
   real(kind=8), dimension(0:nx,0:ny+1) :: xsgp1, ysgp1
 
+  ! pole locations
+  integer(kind=4) :: ipole(2)
+
   real(kind=8), dimension(ni,nj) :: ulon, ulat
   real(kind=8), dimension(ni,nj) ::  htn, hte
   real(kind=8), dimension(ni,nj) :: angle

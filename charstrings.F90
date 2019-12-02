@@ -14,6 +14,7 @@ module charstrings
   character(len= 10) :: res = 'mx050'
 #endif
 
+  !character(len=256) :: dirout = '/scratch2/NCEPDEV/climate/Denise.Worthen/TTout/'
   character(len=256) :: dirout = './'
   character(len=100) :: maskfile = 'ocean_topog.nc'
   character(len= 12) :: maskname = 'wet'
