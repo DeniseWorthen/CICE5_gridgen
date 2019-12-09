@@ -8,6 +8,7 @@ module param
   integer, parameter :: ni = 1440, nj = 1080
 #endif
 #ifdef output_grid_hdeg
+!  integer, parameter :: ni =  720, nj = 576
   integer, parameter :: ni =  720, nj = 576
 #endif
   ! super-grid source variables
