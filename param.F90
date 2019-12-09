@@ -4,6 +4,7 @@ module param
 
   ! output grid size
 #ifdef output_grid_qdeg
+!  integer, parameter :: ni = 1440, nj = 1080
   integer, parameter :: ni = 1440, nj = 1080
 #endif
 #ifdef output_grid_hdeg
