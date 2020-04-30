@@ -15,18 +15,21 @@ begin
  
   ;grres = "mx050"
   ;minlat = 87
-  grres = "mx025"
-  minlat = 88
+  ;grres = "mx025"
+  ;minlat = 88
+  grres = "mx008"
+  minlat = 89
 
-  ;angle2plot = "angle"
+  angle2plot = "angle"
   ; only after debug mode
-  angle2plot = "anglet"
+  ;angle2plot = "anglet"
 
 ;************************************************
 ; read in netCDF file
 ;************************************************
 
-     rtsrc = "$WORK/TripoleTools/CICE5_gridgen/"
+      rtsrc = ""
+  ;   rtsrc = "$WORK/TripoleTools/CICE5_gridgen/"
   ;   rtsrc = "$BLF/master-20191125/CICE_FIX/025/"
   ; get ang from cice grid file 
    varsrc  = "grid_cice_NEMS_"+grres+".nc"
