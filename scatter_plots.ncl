@@ -179,8 +179,8 @@
    end if
    ; these need to be adjusted for the 1/12 grid
    if(grres .eq. "mx008")then
-    lon1=  60.00
-    lon2=-120.00
+    lon1=  75.00
+    lon2=-105.00
    end if
    lat1 = 60.00
    lat2 = 60.00
