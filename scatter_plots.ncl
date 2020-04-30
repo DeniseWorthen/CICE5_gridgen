@@ -43,7 +43,7 @@
  if(grres .eq. "mx008")then
    imax = 4500
    jmax = (/3297,3297/)
-  ipole = (/2250,2250/)
+  ipole = (/1125,1125/)
    ioff = 0
    minlat = 89.8
   end if
