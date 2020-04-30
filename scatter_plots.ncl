@@ -11,14 +11,15 @@
   ; rad 2 degree
   rad2deg = 180.0d0/acos(-1.0d0)
 
+  grres = "mx008"
   ;grres = "mx025"
-  grres = "mx050"
+  ;grres = "mx050"
 
 ;************************************************
 ; read in netCDF file
 ;************************************************
 
-     rtsrc = "$WORK/CICE5_gridgen/"
+     rtsrc = ""
   ; get ang from cice grid file 
    varsrc  = "grid_cice_NEMS_"+grres+".nc"
 
@@ -39,6 +40,13 @@
 ;
 ;************************************************
 
+ if(grres .eq. "mx008")then
+   imax = 4500
+   jmax = (/3297,3297/)
+  ipole = (/2250,2250/)
+   ioff = 0
+   minlat = 89.8
+  end if
  if(grres .eq. "mx025")then
    imax = 1440
    jmax = (/1080,1080/)
@@ -161,8 +169,19 @@
 ; great circle path from (lon1,lat1) to (lon2,lat2)
 ;************************************************
 
-   lon1=  80.00
-   lon2=-100.00
+   if(grres .eq. "mx050")then
+    lon1=  80.00
+    lon2=-100.00
+   end if
+   if(grres .eq. "mx025")then
+    lon1=  60.00
+    lon2=-120.00
+   end if
+   ; these need to be adjusted for the 1/12 grid
+   if(grres .eq. "mx008")then
+    lon1=  60.00
+    lon2=-120.00
+   end if
    lat1 = 60.00
    lat2 = 60.00
 

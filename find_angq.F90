@@ -54,7 +54,7 @@ subroutine find_angq
    xsgp1(i,ny+1) = xsgp1(i2,ny)
    ysgp1(i,ny+1) = ysgp1(i2,ny)
   enddo
- 
+
   !check  
    j = ny+1
   i1 = ipolesg(1); i2 = ipolesg(2)-(ipolesg(1)-i1)

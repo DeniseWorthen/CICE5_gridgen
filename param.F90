@@ -3,6 +3,9 @@ module param
   implicit none
 
   ! output grid size
+#ifdef output_grid_twelf
+  integer, parameter :: ni = 4500, nj = 3297
+#endif
 #ifdef output_grid_qdeg
   integer, parameter :: ni = 1440, nj = 1080
 #endif

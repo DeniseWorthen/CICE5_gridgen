@@ -13,13 +13,15 @@ begin
   ; rad 2 degree
   rad2deg = 180.0d0/acos(-1.0d0)
 
-  grres = "mx050"
-  minlat = 86.0
+  grres = "mx008"
+  minlat = 88.0
+  ;grres = "mx050"
+  ;minlat = 86.0
   ;grres = "mx025"
   ;minlat = 88.0
 
-  ;varname = "htn"
-  varname = "hte"
+  varname = "htn"
+  ;varname = "hte"
 
 ;************************************************
 ; read in netCDF file
@@ -42,6 +44,10 @@ begin
    htelonname = "lonCu"
    htelatname = "latCu"
 
+   if(grres .eq. "mx008")then
+      htnlevs = (/4.8,  6.1, 0.010/) 
+      htelevs = (/2.0, 10.0, 1.00/) 
+   end if
    if(grres .eq. "mx025")then
       htnlevs = (/6.4, 6.6, 0.005/) 
       htelevs = (/2.0, 26.0, 1.00/) 
@@ -69,7 +75,7 @@ begin
 ;************************************************
   wkstype="X11"
   ;wkstype="png"
-  wkstype@wkWidth=802
+  wkstype@wkWidth=800
   wkstype@wkHeight=800
   wks   = gsn_open_wks (wkstype,varname+"_"+grres)              ; send graphics to X11 window
 
@@ -95,6 +101,10 @@ begin
    res@mpMaxLatF            =  78.0
    res@mpMinLonF            =  50.0
    res@mpMaxLonF            =  70.0
+   if(grres .eq. "mx008")then
+    res@mpMinLonF           =  40.0
+    res@mpMaxLonF           =  74.2
+   end if
    levs = htelevs
   end if
 

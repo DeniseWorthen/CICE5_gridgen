@@ -2,7 +2,7 @@ CDF=/apps/netcdf/4.7.0/intel/18.0.5.274
 #####################################################################
 # compiler options
 #####################################################################
-FOPT = -C
+FOPT = -C 
 #FOPT = -C -warn
 # adding -g produces ~10-16 differences in angle w/ grid file that is 
 # currently being used but which was generated on Theia. Without -g,
@@ -11,10 +11,13 @@ FOPT = -C
 # Hera and previous Theia version, regardless of FOPT setting
 #FOPT = -C -g
 
-F90 = ifort
+# for output_grid_twelf 
+F90 = ifort -mcmodel medium -shared-intel
+#F90 = ifort
 #F90 = ifort -warn
 
-opt1 = -Doutput_grid_qdeg
+opt1 = -Doutput_grid_twelf 
+#opt1 = -Doutput_grid_qdeg
 #opt1 = -Doutput_grid_hdeg
 
 opt2 = -Ddebug_output
