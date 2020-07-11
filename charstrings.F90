@@ -19,6 +19,15 @@ module charstrings
   character(len=100) :: maskfile = 'ocean_mask.nc'
   character(len= 12) :: maskname = 'mask'
 #endif
+#ifdef output_grid_1deg
+! temporary location
+  character(len=256) :: dirsrc = &
+    '/scratch2/NCEPDEV/climate/Denise.Worthen/NEMS_INPUT0.1/OM4_360x320_C180/mosaic_unpacked.20150713/'
+  character(len= 10) :: res = 'mx100'
+
+  character(len=100) :: maskfile = 'ocean_mask.nc'
+  character(len= 12) :: maskname = 'mask'
+#endif
   character(len=256) :: dirout = '/scratch2/NCEPDEV/climate/Denise.Worthen/TTout/'
   character(len=256) :: history
   character(len=  8) :: cdate

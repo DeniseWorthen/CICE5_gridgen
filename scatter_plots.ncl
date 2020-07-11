@@ -12,13 +12,14 @@
   rad2deg = 180.0d0/acos(-1.0d0)
 
   ;grres = "mx025"
-  grres = "mx050"
+  ;grres = "mx050"
+  grres = "mx100"
 
 ;************************************************
 ; read in netCDF file
 ;************************************************
 
-     rtsrc = "$WORK/CICE5_gridgen/"
+     rtsrc = "$CL/TTout/"
   ; get ang from cice grid file 
    varsrc  = "grid_cice_NEMS_"+grres+".nc"
 
@@ -52,6 +53,13 @@
   ipole = (/ 180, 180/)
    ioff = 0
    minlat = 89.5
+  end if
+ if(grres .eq. "mx100")then
+   imax = 360
+   jmax = (/ 320, 320/)
+  ipole = (/  90,  90/)
+   ioff = 0
+   minlat = 89.0
   end if
 
 ;************************************************
@@ -161,10 +169,17 @@
 ; great circle path from (lon1,lat1) to (lon2,lat2)
 ;************************************************
 
-   lon1=  80.00
-   lon2=-100.00
-   lat1 = 60.00
-   lat2 = 60.00
+   if(grres .eq. "mx100")then
+    lon1=  60.00
+    lon2=-120.00
+    lat1 = 60.00
+    lat2 = 60.00
+   else
+    lon1=  80.00
+    lon2=-100.00
+    lat1 = 60.00
+    lat2 = 60.00
+   end if
 
 ; ***************************************************
 ; Resources for the polyline

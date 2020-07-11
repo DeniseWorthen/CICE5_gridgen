@@ -121,8 +121,12 @@ program gen_cicegrid
   if(xtype .eq. 5)rc = nf90_get_var(ncid,      id,  wet4)
   if(xtype .eq. 6)rc = nf90_get_var(ncid,      id,  wet8)
   rc = nf90_close(ncid)
-  
-  if(xtype.eq. 6)wet4 = real(wet8,4)
+#ifdef output_grid_1deg
+  if(xtype .eq. 6)then
+   where(wet8 .gt. 0.5d0)wet8 = 1.0d0
+  endif
+#endif 
+  if(xtype .eq. 6)wet4 = real(wet8,4)
 
 !---------------------------------------------------------------------
 ! read supergrid file

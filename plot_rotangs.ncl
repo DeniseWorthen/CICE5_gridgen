@@ -15,8 +15,10 @@ begin
  
   ;grres = "mx050"
   ;minlat = 87
-  grres = "mx025"
-  minlat = 88
+  ;grres = "mx025"
+  ;minlat = 88
+  grres = "mx100"
+  minlat = 87
 
   ;angle2plot = "angle"
   ; only after debug mode
@@ -26,7 +28,8 @@ begin
 ; read in netCDF file
 ;************************************************
 
-     rtsrc = "$WORK/TripoleTools/CICE5_gridgen/"
+  ;   rtsrc = "$WORK/TripoleTools/CICE5_gridgen/"
+     rtsrc = "$CL/TTout/"
   ;   rtsrc = "$BLF/master-20191125/CICE_FIX/025/"
   ; get ang from cice grid file 
    varsrc  = "grid_cice_NEMS_"+grres+".nc"
@@ -50,10 +53,17 @@ begin
 ; great circle path from (lon1,lat1) to (lon2,lat2)
 ;************************************************
 
-   lon1=  60.00
-   lon2=-120.00
-   lat1 = 60.00
-   lat2 = 60.00
+   if(grres .eq. "mx100")then
+    lon1=  60.00
+    lon2=-120.00
+    lat1 = 60.00
+    lat2 = 60.00
+   else
+    lon1=  80.00
+    lon2=-100.00
+    lat1 = 60.00
+    lat2 = 60.00
+   end if
 
 ;************************************************
 ; define the map
