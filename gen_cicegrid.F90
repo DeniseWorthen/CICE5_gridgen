@@ -123,8 +123,6 @@ program gen_cicegrid
   rc = nf90_close(ncid)
  
   if(xtype.eq. 6)wet4 = real(wet8,4)
-  ! required for 1deg grid
-  where(wet4 .gt. 0.5d0)wet4 = 1.0d0
 
 !---------------------------------------------------------------------
 ! read supergrid file
