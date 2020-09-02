@@ -14,11 +14,14 @@ FOPT = -C
 F90 = ifort
 #F90 = ifort -warn
 
-#opt1 = -Doutput_grid_qdeg
+opt1 = -Doutput_grid_qdeg
 #opt1 = -Doutput_grid_hdeg
-opt1 = -Doutput_grid_1deg
+#opt1 = -Doutput_grid_1deg
 
-opt2 = -Ddebug_output
+# this option should not be used when generating a final version
+# because it adds TLat and Tlon to the grid, which triggers the
+# CICE code to initialize differently
+#opt2 = -Ddebug_output
 
 optall = $(opt1) $(opt2)
 
