@@ -42,15 +42,15 @@ program gen_cicegrid
 ! so....
 !     hte(I,j) =   dy(i2,j2-1) +   dy(i2,j2)
 !
-! rotation angle on supergrid vertices can be found 
-! using the formula in MOM_shared_initialization.F90, accounting 
+! rotation angle on supergrid vertices can be found
+! using the formula in MOM_shared_initialization.F90, accounting
 ! for indexing difference between reduced grid and super grid
 !
 !         SuperGrid                 Reduced grid
-! 
+!
 !  i-1,j+1         i+1,j+1
 !     X-------X-------X             I-1,J      I,J
-!     |       |       |                X-------X      
+!     |       |       |                X-------X
 !     |       |       |                |       |
 !     |       | i,j   |                |   T   |
 !     X-------X-------X                |       |
@@ -59,31 +59,31 @@ program gen_cicegrid
 !     |       |       |
 !     X-------X-------X
 !  i-1,j-1         i+1,j-1
-!      
-! so that in angle formulae 
+!
+! so that in angle formulae
 !         I==>i+1,I-1==>i-1
-!         J==>j+1,J-1==>j-1 
+!         J==>j+1,J-1==>j-1
 !
 ! CICE expects angle to be XY -> LatLon so change the sign from MOM6 value
-! This has been determined from the HYCOM code: ALL/cice/src/grid2cice.f 
+! This has been determined from the HYCOM code: ALL/cice/src/grid2cice.f
 !
 !            anglet(i,j) =    -pang(i+i0,  j+j0)   !radians
 !c           pang is from lon-lat to x-y, but anglet is the reverse
 
-! where anglet is the angle variable being written to the CICE grid file 
-! and pang is HYCOM's own rotation angle. 
+! where anglet is the angle variable being written to the CICE grid file
+! and pang is HYCOM's own rotation angle.
 !
 ! Tripole Seam flip: ipL,ipR left,right poles on seam
 !
 ! ipL-1     ipL    ipL+1       ipR-1     ipR    ipR+1
-!    x-------x-------x     |||    x-------x-------x 
+!    x-------x-------x     |||    x-------x-------x
 !
 ! Fold over; ipL must align with ipR
-!  
+!
 !  ipR+1     ipR    ipR-1
-!     x-------x-------x 
+!     x-------x-------x
 !  ipL-1     ipL    ipL+1
-!     x-------x-------x 
+!     x-------x-------x
 !
 !
 !---------------------------------------------------------------------
@@ -107,7 +107,7 @@ program gen_cicegrid
   integer :: system
 
 !---------------------------------------------------------------------
-! get the mask 
+! get the mask
 !---------------------------------------------------------------------
 
   fname_in = trim(dirsrc)//trim(maskfile)
@@ -140,10 +140,10 @@ program gen_cicegrid
   rc = nf90_inq_varid(ncid, 'y', id)  !lat
   rc = nf90_get_var(ncid,    id,  y)
  
-  rc = nf90_inq_varid(ncid, 'dx', id)  
+  rc = nf90_inq_varid(ncid, 'dx', id)
   rc = nf90_get_var(ncid,     id, dx)
   
-  rc = nf90_inq_varid(ncid, 'dy', id)  
+  rc = nf90_inq_varid(ncid, 'dy', id)
   rc = nf90_get_var(ncid,     id, dy)
   rc = nf90_close(ncid)
 
@@ -182,10 +182,10 @@ program gen_cicegrid
   enddo
 
 !---------------------------------------------------------------------
-! For the 1/4deg grid, hte at j=720 and j = 1440 is identically=0.0 for 
-! j > 840 (64.0N). These are land points, but since CICE uses hte to 
+! For the 1/4deg grid, hte at j=720 and j = 1440 is identically=0.0 for
+! j > 840 (64.0N). These are land points, but since CICE uses hte to
 ! generate remaining variables, setting them to zero will cause problems
-! For 1deg grid, hte at ni/2 and ni are very small O~10-12, so test for 
+! For 1deg grid, hte at ni/2 and ni are very small O~10-12, so test for
 ! hte < 1.0
 !---------------------------------------------------------------------
 

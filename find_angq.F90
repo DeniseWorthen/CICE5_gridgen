@@ -55,7 +55,7 @@ subroutine find_angq
    ysgp1(i,ny+1) = ysgp1(i2,ny)
   enddo
  
-  !check  
+  !check
    j = ny+1
   i1 = ipolesg(1); i2 = ipolesg(2)-(ipolesg(1)-i1)
   print *,'replicate X across seam on SG'
@@ -74,7 +74,7 @@ subroutine find_angq
 
 !---------------------------------------------------------------------
 ! rotation angle on supergrid vertices
-! lonB: x(i-1,j-1) has same relationship to x(i,j) on SG as 
+! lonB: x(i-1,j-1) has same relationship to x(i,j) on SG as
 !       geolonT(i,j) has to geolonBu(i,j) on the reduced grid
 !---------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ subroutine find_angq
                           ysgp1(i-1,j-1) - ysgp1(i+1,j-1) )
   enddo ; enddo
 
-  !check  
+  !check
    j = ny
   i1 = ipolesg(1); i2 = ipolesg(2)-(ipolesg(1)-i1)
   print *,'angq along seam on SG'
